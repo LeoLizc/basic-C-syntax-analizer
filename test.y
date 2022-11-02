@@ -37,14 +37,15 @@ ini: prog {printf("TODO OK\n");}
 
 prog: includes body
     | body
+    | includes
     ;
 
 includes: includes include
     | include
+    | error {} includes | body
     ;
 
 include: HASH INCLUDE
-    | error {printf("Error en la linea ");}
 
 body: body stmts 
     | /* empty */ 
@@ -87,7 +88,7 @@ line_stmt: assign_stmt
     | scan_stmt 
     | BREAK 
     | CONTINUE 
-    // | error SEMICOLON {printf("hola");}
+    // | error SEMICOLON {yyclearin;yyerrok;}
     ;
 
 assign_stmt: ID assign_op expr 
