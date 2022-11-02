@@ -9,7 +9,7 @@
 
 %token NUM_INT NUM_REAL TCHAR STRING
 %token ID
-%token IF ELSE WHILE DO FOR RETURN PRINT MAIN BREAK CONTINUE SWITCH CASE DEFAULT INCLUDE LIBRARY SCANF
+%token IF ELSE WHILE DO FOR RETURN PRINT MAIN BREAK CONTINUE SWITCH CASE DEFAULT HASH INCLUDE SCANF
 %token INT FLOAT CHAR VOID
 %token OPEN_BRACKET CLOSE_BRACKET OPEN_BRACE CLOSE_BRACE OPEN_SQUARE_BRACKET CLOSE_SQUARE_BRACKET
 %token SEMICOLON COMMA COLON
@@ -35,7 +35,18 @@
 ini: prog {printf("TODO OK\n");}
 ;
 
-prog: prog stmts 
+prog: includes body
+    | body
+    ;
+
+includes: includes include
+    | include
+    ;
+
+include: HASH INCLUDE
+    | error {printf("Error en la linea ");}
+
+body: body stmts 
     | /* empty */ 
     // | error SEMICOLON {printf("hola");}
     ;

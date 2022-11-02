@@ -1,13 +1,18 @@
-// #include <stdio.h>
-void main()
-{ int i,x;
+#include <stdio.h>
+#incl5ude <stdio.h>
+#include <stdio.h>
+#include <stdio.h>
+#inclu5de <stdio.h>
+// void main()
+// { 
+int i,x;
 float media,media2;
 media =0;
 for (i = 0; i < 10;i++)
 { scanf("%d",x);
  media+=x;
  };
-media /= 10;
+media /+= 10;
 printf ("%f",media);
 i = 0;
 media2 = 0;
@@ -26,4 +31,4 @@ media2 = media2 + x;
 }while (i < 10);
 media2 = media2/10;
 printf ("%f",media);
-}
+// }

@@ -13,7 +13,8 @@ extern YYSTYPE yylval;
 NENTERO -?[0-9]+
 NFLOTANTE -?[0-9]+(\.[0-9]+)?([e|E][-|+]?[0-9]+)?
 Main main
-LIBRERIA stdio.h|string.h|ctype.h|stdbool.h
+HASH #
+LIBRERIA include[ ]+(\<|\")[a-zA-Z0-9_\.]+(\>|\")
 PARENT_A \(
 PARENT_C \)
 VOID void
@@ -101,8 +102,8 @@ salto_linea \n
 {ELSE}              {return ELSE;}
 {SWTICH}            {return SWITCH;}
 {PRINTF}            {return PRINT;}
-include             {return INCLUDE;}
-{LIBRERIA}          {return LIBRARY;}
+{HASH}              {return HASH;}
+{LIBRERIA}          {return INCLUDE;}
 return              {return RETURN;}
 break               {return BREAK;}
 continue            {return CONTINUE;}
@@ -128,7 +129,7 @@ default             {return DEFAULT;}
 {DO}                {return DO;}
 {NENTERO}{IDENTIFICADOR}  { return TERROR; }
 {IDENTIFICADOR}     {return ID;}
-. {yyerror("IDK");}
+. {return TERROR;}
 
 
 %%
